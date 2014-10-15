@@ -64,6 +64,9 @@
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
 		D72AD6B819EAB04B0044ED8F /* pathFind.tmx in Resources */ = {isa = PBXBuildFile; fileRef = D72AD6B719EAB04B0044ED8F /* pathFind.tmx */; };
 		D72AD6BA19EAB1A20044ED8F /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = D72AD6B919EAB1A20044ED8F /* tileset.png */; };
+		D7A921F619ED074200F1C075 /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F319ED074200F1C075 /* goal.png */; };
+		D7A921F719ED074200F1C075 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F419ED074200F1C075 /* start.png */; };
+		D7A921F819ED074200F1C075 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F519ED074200F1C075 /* tile.png */; };
 		D7FE348C19EA2DFF006A296A /* PlayNow.png in Resources */ = {isa = PBXBuildFile; fileRef = D7FE348A19EA2DFF006A296A /* PlayNow.png */; };
 		D7FE348D19EA2DFF006A296A /* PlayNowSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D7FE348B19EA2DFF006A296A /* PlayNowSelected.png */; };
 		D7FE349019EA3B79006A296A /* TileMapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7FE348E19EA3B79006A296A /* TileMapScene.cpp */; };
@@ -156,6 +159,9 @@
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		D72AD6B719EAB04B0044ED8F /* pathFind.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pathFind.tmx; sourceTree = "<group>"; };
 		D72AD6B919EAB1A20044ED8F /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
+		D7A921F319ED074200F1C075 /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
+		D7A921F419ED074200F1C075 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		D7A921F519ED074200F1C075 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		D7FE348A19EA2DFF006A296A /* PlayNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayNow.png; sourceTree = "<group>"; };
 		D7FE348B19EA2DFF006A296A /* PlayNowSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayNowSelected.png; sourceTree = "<group>"; };
 		D7FE348E19EA3B79006A296A /* TileMapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMapScene.cpp; sourceTree = "<group>"; };
@@ -274,6 +280,9 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D7A921F319ED074200F1C075 /* goal.png */,
+				D7A921F419ED074200F1C075 /* start.png */,
+				D7A921F519ED074200F1C075 /* tile.png */,
 				D72AD6B919EAB1A20044ED8F /* tileset.png */,
 				D72AD6B719EAB04B0044ED8F /* pathFind.tmx */,
 				D7FE348A19EA2DFF006A296A /* PlayNow.png */,
@@ -456,6 +465,7 @@
 			files = (
 				D72AD6BA19EAB1A20044ED8F /* tileset.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				D7A921F819ED074200F1C075 /* tile.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
@@ -466,10 +476,12 @@
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				D72AD6B819EAB04B0044ED8F /* pathFind.tmx in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				D7A921F719ED074200F1C075 /* start.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				46880B7F19C43A67006E1F66 /* Marker Felt.ttf in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
+				D7A921F619ED074200F1C075 /* goal.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,

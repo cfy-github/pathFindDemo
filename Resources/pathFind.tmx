@@ -5,11 +5,17 @@
  </tileset>
  <layer name="Background" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1CEOACAQA8FDou//f0VjSUiuyYjxa9quqgYAAAAAAOCyBzS8WAMaIEnqZlI/CgDgtwPiIblV
+   eJzt0zEKgEAMRcH0Ilvk/ncVO60WFxYimWKqNI/Az4hIAAAAAAAAXo7JfRRoXOl+Ogv0dtL531X3cvuymUr+2g0AsNsFAsC5WQ==
   </data>
  </layer>
  <objectgroup name="objects">
   <object name="initPoint" x="529" y="1137">
+   <ellipse/>
+  </object>
+  <object name="defaultPoint" x="50" y="51">
+   <ellipse/>
+  </object>
+  <object name="goalPoint" x="785" y="1071">
    <ellipse/>
   </object>
  </objectgroup>
