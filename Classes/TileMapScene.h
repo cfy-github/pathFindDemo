@@ -40,6 +40,8 @@ public:
         return (now.tv_sec * 1000 + now.tv_usec / 1000);
     }
     
+    void ccLogVec2(Vec2 v);
+    
 private:
     //Point tileCoordForPosition(Point pos);
     
@@ -58,6 +60,14 @@ private:
     
     void initImageCache();
     
+    void initTilesType();
+    
+    void switchTileTypes();
+    
+    void runScaleAction(Sprite* ps);
+    
+    Sprite* getTileAt(Point p);
+    
     //void touchMoved
     
 private:
@@ -68,22 +78,42 @@ private:
     
     Sprite* _start;
     Sprite* _goal;
+    Sprite* _currDft;
     
     Texture2D* _defaultTileTexture;
     Texture2D* _startTileTexture;
     Texture2D* _goalTileTexture;
+    Texture2D* _wallTileTexture;
     
-    TMXLayer* _meta;
+    //TMXLayer* _meta;
+    
+    //Vector<int> tilesColorTags;
+    //std::unordered_map<Sprite*, int> tilesType;
+    std::vector<std::vector<Sprite*> > vTileSprites;
     
     //Touch
     bool isTouchMoved=false;
     //bool isLongTouch=false;
     bool isStartLongPressed=false;
     bool isGoalLongPressed=false;
+    bool isDftLongPressed=false;
+    
     
     bool isStartTouched=false;
     bool isGoalTouched=false;
+    bool isDftTouched=false;
     
+    //SpriteBatchNode* _blueNode;
+    //SpriteBatchNode* _blackNode;
+    //SpriteBatchNode* _dftNode;
+    
+    Point _blueCoord;
+    Point _blackCoord;
+    Point _dftCoord;
+    
+    Point _currCoord;
+    
+    int moveAlterFlag=-1;
 };
 
 #endif /* defined(__pathFindDemo__TileMapScene__) */

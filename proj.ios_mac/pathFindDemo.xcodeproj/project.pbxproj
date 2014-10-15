@@ -67,6 +67,7 @@
 		D7A921F619ED074200F1C075 /* goal.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F319ED074200F1C075 /* goal.png */; };
 		D7A921F719ED074200F1C075 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F419ED074200F1C075 /* start.png */; };
 		D7A921F819ED074200F1C075 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F519ED074200F1C075 /* tile.png */; };
+		D7A921FD19EE40E200F1C075 /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921FC19EE40E200F1C075 /* wall.png */; };
 		D7FE348C19EA2DFF006A296A /* PlayNow.png in Resources */ = {isa = PBXBuildFile; fileRef = D7FE348A19EA2DFF006A296A /* PlayNow.png */; };
 		D7FE348D19EA2DFF006A296A /* PlayNowSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D7FE348B19EA2DFF006A296A /* PlayNowSelected.png */; };
 		D7FE349019EA3B79006A296A /* TileMapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7FE348E19EA3B79006A296A /* TileMapScene.cpp */; };
@@ -162,6 +163,7 @@
 		D7A921F319ED074200F1C075 /* goal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goal.png; sourceTree = "<group>"; };
 		D7A921F419ED074200F1C075 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		D7A921F519ED074200F1C075 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
+		D7A921FC19EE40E200F1C075 /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
 		D7FE348A19EA2DFF006A296A /* PlayNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayNow.png; sourceTree = "<group>"; };
 		D7FE348B19EA2DFF006A296A /* PlayNowSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayNowSelected.png; sourceTree = "<group>"; };
 		D7FE348E19EA3B79006A296A /* TileMapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMapScene.cpp; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D7A921FC19EE40E200F1C075 /* wall.png */,
 				D7A921F319ED074200F1C075 /* goal.png */,
 				D7A921F419ED074200F1C075 /* start.png */,
 				D7A921F519ED074200F1C075 /* tile.png */,
@@ -490,6 +493,7 @@
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 				D7FE348D19EA2DFF006A296A /* PlayNowSelected.png in Resources */,
+				D7A921FD19EE40E200F1C075 /* wall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

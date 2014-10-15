@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
-  <image source="tileset.png" width="160" height="160"/>
+  <image source="tileset.png" width="128" height="128"/>
  </tileset>
  <layer name="Background" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt0zEKgEAMRcH0Ilvk/ncVO60WFxYimWKqNI/Az4hIAAAAAAAAXo7JfRRoXOl+Ogv0dtL531X3cvuymUr+2g0AsNsFAsC5WQ==
+   eJztzqsRgEAQBbDlGGD49F8vVwCOFU9ExGdU1QAAAAAAAAAAgA9nwKHDFnDo8AQcOhwBhw57wKHDFXD4Y52W6Z5eQX4Ttw==
   </data>
  </layer>
  <objectgroup name="objects">
   <object name="initPoint" x="529" y="1137">
    <ellipse/>
   </object>
-  <object name="defaultPoint" x="50" y="51">
+  <object name="goalPoint" x="785" y="1071">
    <ellipse/>
   </object>
-  <object name="goalPoint" x="785" y="1071">
+  <object name="black" x="1585.57" y="1585.57">
+   <ellipse/>
+  </object>
+  <object name="blue" x="1584.26" y="1552.79">
+   <ellipse/>
+  </object>
+  <object name="defaultPoint" x="1486" y="1582">
+   <ellipse/>
+  </object>
+  <object name="blackPoint" x="1584" y="1390">
    <ellipse/>
   </object>
  </objectgroup>
