@@ -7,6 +7,8 @@
 //
 
 #include "TileMapScene.h"
+#include <chrono>
+#include <ctime>
 
 USING_NS_CC;
 
@@ -27,14 +29,14 @@ Point TileMapScene::position2TileCoord(Point p) {
 }
 
 void TileMapScene::runScaleAction(Sprite* ps) {
-    auto scaleUp=ScaleTo::create(0.2f, 1.2);
-    auto scaleDown=ScaleTo::create(0.2f, 1);
+    auto scaleUp=ScaleTo::create(0.15f, 1.2);
+    auto scaleDown=ScaleTo::create(0.15f, 1.0);
     auto seqScale=Sequence::create(scaleUp, scaleDown, NULL);
     ps->runAction(seqScale);
 }
 
 void TileMapScene::switchTileTypes() {
-    CCLOG("Switch types\n");
+    //CCLOG("Switch types\n");
     auto ps=vTileSprites[_currCoord.x][_currCoord.y];
     
     if(moveAlterFlag==-1) {//First touch
@@ -62,68 +64,15 @@ void TileMapScene::switchTileTypes() {
             }
         }
     }
-    /*Sprite* ps=_currDft;
-    if(!ps) {
-        CCLOG("curr default tile is NULL\n");
-        return;
-    }
-    auto coord=position2TileCoord(ps->getPosition());
-    auto tileSet=_background->getTileSet();
-    
-    if(tilesType[ps]==0) {
-        CCLOG("dft to wall\n");
-        //new...ps
-        auto gid=_background->getTileGIDAt(_blackCoord);
-        CCLOG("%d\n", gid);
-        Rect rect=tileSet->getRectForGID(gid);
-        CCLOG("%f, %f, %f, %f\n", rect.getMinX(), rect.getMinY(), rect.getMaxX(), rect.getMaxY());
-        
-        auto newPs=Sprite::createWithTexture(_blackNode->getTexture(), Rect(0,0,32,32));
-        newPs->setBatchNode(_blackNode);
-        newPs->retain();
-        newPs->setAnchorPoint(ps->getAnchorPoint());
-        newPs->setPosition(ps->getPosition());
-        //int z = (int)(coord.x + coord.y * _background->getLayerSize().width);
-        //ssize_t indexForZ = _background->a
-        _blackNode->addChild(newPs);
-        
-        tilesType.erase(ps);
-        tilesType[newPs]=1;
-        vTileSprites[coord.x][coord.y]=newPs;
-        newPs->release();
-        auto batchNode=ps->getBatchNode();
-        batchNode->Node::removeChild(ps, true);
-        _currDft=newPs;
-    } else {
-        CCLOG("wall to dft\n");
-        auto gid=_background->getTileGIDAt(_dftCoord);
-        CCLOG("%d\n", gid);
-        Rect rect=tileSet->getRectForGID(gid);
-        CCLOG("%f, %f, %f, %f\n", rect.getMinX(), rect.getMinY(), rect.getMaxX(), rect.getMaxY());
-        
-        auto newPs=Sprite::createWithTexture(_dftNode->getTexture(), rect);
-        newPs->setBatchNode(_dftNode);
-        newPs->retain();
-        newPs->setAnchorPoint(ps->getAnchorPoint());
-        newPs->setPosition(ps->getPosition());
-        _dftNode->Node::addChild(newPs);
-        tilesType.erase(ps);
-        tilesType[newPs]=0;
-        vTileSprites[coord.x][coord.y]=newPs;
-        newPs->release();
-        auto batchNode=ps->getBatchNode();
-        batchNode->Node::removeChild(ps, true);
-        _currDft=newPs;
-    }*/
 }
 
 void TileMapScene::checkLongPress(float t) {
-    CCLOG("In check\n");
+    //CCLOG("In check\n");
     this->unschedule(schedule_selector(TileMapScene::checkLongPress));
     
     if((isStartTouched || isGoalTouched || isDftTouched) && !isTouchMoved) {
         if(isStartTouched) {
-           // CCLOG("check long start\n");
+           //CCLOG("check long start\n");
             _start->setScale(2.0f);
             _start->setOpacity(200);
             isStartLongPressed=true;
@@ -137,7 +86,7 @@ void TileMapScene::checkLongPress(float t) {
         }
         
         if(isDftTouched) {
-            CCLOG("in LP DFT\n");
+            //CCLOG("in LP DFT\n");
             switchTileTypes();
             isDftLongPressed=true;
         }
@@ -157,18 +106,18 @@ bool TileMapScene::onTouchBegan(Touch* t, Event* e) {
     
     if(_start->getBoundingBox().containsPoint(loc)) {
         //Click the start point
-        CCLOG("Start Touched\n");
+        //CCLOG("Start Touched\n");
         isStartTouched=true;
         this->schedule(schedule_selector(TileMapScene::checkLongPress), 0.9f);
     }
     else if(_goal->getBoundingBox().containsPoint(loc)) {
         //Click the goal point
-        CCLOG("Goal Touched\n");
+        //CCLOG("Goal Touched\n");
         isGoalTouched=true;
         this->schedule(schedule_selector(TileMapScene::checkLongPress), 0.9f);
     }
     else {
-        CCLOG("Touch DFT\n");
+        //CCLOG("Touch DFT\n");
         //Normal tile touched
         isDftTouched=true;
         //auto mLoc=_tileMap->convertToNodeSpace(loc);
@@ -198,17 +147,17 @@ void TileMapScene::onTouchMoved(Touch* t, Event* e) {
         if(isStartLongPressed) {
            // CCLOG("Start Dragging\n");
             auto originTileCoord=position2TileCoord(_tileMap->convertToNodeSpace(_start->getPosition()));
-            auto loc1=_tileMap->convertToNodeSpace(_start->getPosition());
-            auto loc2=_start->getPosition();
+            //auto loc1=_tileMap->convertToNodeSpace(_start->getPosition());
+            //auto loc2=_start->getPosition();
             
             auto currTileCoord=position2TileCoord(tLoc);
             //CCLOG("%f, %f,,,%f, %f----%f,%f\n", loc1.x, loc1.y, loc2.x, loc2.y, tLoc.x, tLoc.y);
             if(originTileCoord!=currTileCoord) {
                 //Move start sprite;
-                
-                _start->setPosition(tileCoord2Center(currTileCoord));
+                if(!vTileSprites[currTileCoord.x][currTileCoord.y]->isVisible()) { //Not hitting the wall
+                    _start->setPosition(tileCoord2Center(currTileCoord));
+                }
             }
-            //TODO: HITS wall
         }
         
         //Dragging goal sprite
@@ -217,7 +166,9 @@ void TileMapScene::onTouchMoved(Touch* t, Event* e) {
             auto currTileCoord=position2TileCoord(tLoc);
             if(originTileCoord!=currTileCoord) {
                 //Move goal sprite;
-                _goal->setPosition(tileCoord2Center(currTileCoord));
+                if(!vTileSprites[currTileCoord.x][currTileCoord.y]->isVisible()) { //Not hitting the wall
+                    _goal->setPosition(tileCoord2Center(currTileCoord));
+                }
             }
             //todo: hits wall
         }
@@ -228,20 +179,14 @@ void TileMapScene::onTouchMoved(Touch* t, Event* e) {
             auto currTileCoord=position2TileCoord(tLoc);
             if(originTileCoord!=currTileCoord) {
                 //Move DFT sprite;
-                CCLOG("DFT: To another tile\n");
-                if(currTileCoord==position2TileCoord(_start->getPosition()) || currTileCoord==position2TileCoord(_goal->getPosition())) {
-                    //cannot move to start or goal point
-                    return;
+                //CCLOG("DFT: To another tile\n");
+                if(!(currTileCoord==position2TileCoord(_start->getPosition()) || currTileCoord==position2TileCoord(_goal->getPosition()))) { //Not hitting goal or start point.
+                    _currCoord=currTileCoord;
+                    switchTileTypes();
                 }
-                //auto ps=getTileAt(currTileCoord);
-                //_currDft=ps;
-                _currCoord=currTileCoord;
-                switchTileTypes();
             }
         }
-        
     }
-    
     
     //TODO
 }
@@ -284,7 +229,7 @@ void TileMapScene::onTouchEnded(Touch* t, Event* e) {
 }
 
 void TileMapScene::initTouchEvent() {
-    auto listener=EventListenerTouchOneByOne::create();
+    listener=EventListenerTouchOneByOne::create();
     
     listener->setSwallowTouches(true);
     
@@ -305,6 +250,8 @@ void TileMapScene::initImageCache() {
     _goalTileTexture=Director::getInstance()->getTextureCache()->addImage("goal.png");
     _defaultTileTexture=Director::getInstance()->getTextureCache()->addImage("tile.png");
     _wallTileTexture=Director::getInstance()->getTextureCache()->addImage("wall.png");
+    _greenTileTexture=Director::getInstance()->getTextureCache()->addImage("green.png");
+    _blueTileTexture=Director::getInstance()->getTextureCache()->addImage("blue.png");
 }
 
 void TileMapScene::initTilesType() {
@@ -312,13 +259,19 @@ void TileMapScene::initTilesType() {
     for(int i=0;i<size.width;++i) {
         for(int j=0;j<size.height;++j) {
             auto ps=Sprite::createWithTexture(_wallTileTexture);
+            auto ps2=Sprite::createWithTexture(_greenTileTexture);
             ps->setAnchorPoint(Vec2(0.5,0.5));
+            ps2->setAnchorPoint(Vec2(0.5,0.5));
             auto center=tileCoord2Center(Point(i,j));
             ps->setPosition(center);
+            ps2->setPosition(center);
             ps->setVisible(false);
+            ps2->setVisible(false);
             vTileSprites[i][j]=ps;
+            vTilesConfig[i][j]=ps2;
             //tilesType[ps]=0; //0 for normal type
             addChild(ps, 10);
+            addChild(ps2, 20);
         }
     }
 }
@@ -332,6 +285,7 @@ bool TileMapScene::init() {
     // 1. super init first
     if ( !Layer::init() ) return false;
     
+    _finderAstar=nullptr;
     
     initImageCache();
     //Load tile map
@@ -341,6 +295,7 @@ bool TileMapScene::init() {
     addChild(_tileMap, 0, 66);
     auto size=_tileMap->getMapSize();
     vTileSprites=std::vector<std::vector<Sprite* > >(size.height, std::vector<Sprite *>(size.width, nullptr));
+    vTilesConfig=std::vector<std::vector<Sprite* > >(size.height, std::vector<Sprite *>(size.width, nullptr));
     initTilesType();
     
     
@@ -370,15 +325,6 @@ bool TileMapScene::init() {
     auto blueTileCoord=_blueCoord=position2TileCoord(bluePoint);
     auto blackTileCoord=_blackCoord=position2TileCoord(blackPoint);
     
-    //Init blue batch node
-    ///_blueNode=_background->getTileAt(blueTileCoord)->getBatchNode();
-    //_blackNode=_background->getTileAt(blackTileCoord)->getBatchNode();
-    //_dftNode=_background->getTileAt(dftTileCoord)->getBatchNode();
-    
-    //ccLogVec2(blueTileCoord);
-    //ccLogVec2(blackTileCoord);
-    //ccLogVec2(dftTileCoord);
-    
     //Init start sprite;
     _start=Sprite::createWithTexture(_startTileTexture);
     _start->setAnchorPoint(Vec2(0.5,0.5));
@@ -394,11 +340,103 @@ bool TileMapScene::init() {
     addChild(_goal, 10, 80);
     
     
+    
+    auto visibleSize=Director::getInstance()->getVisibleSize();
+    
+    auto goMenuItem=MenuItemImage::create(
+                                          "fire.png",
+                                          "fireSel.png",
+                                          CC_CALLBACK_1(TileMapScene::menuGoCallback, this));
+    //goMenuItem->setAnchorPoint(Vec2(1,0));
+    goMenuItem->setPosition(visibleSize.width/2, visibleSize.height/2);
+    goMenuItem->setScale(2.0);
+    
+    auto goMenu=Menu::create(goMenuItem, NULL);
+    goMenu->setPosition(visibleSize.width/2, visibleSize.height/2);
+    
+    addChild(goMenu, 200);
+    
+    //_finderAstar=new AStarFinder(static_cast<int>(_tileMap->getMapSize().width));
+    //_finderAstar->init();
+    
     initTouchEvent();
     
     setViewPointCetner(startCenter);
     
     return true;
+}
+
+void TileMapScene::menuGoCallback(Ref* r) {
+    //disable touch event listener;
+    listener->setEnabled(false);
+    
+    if(_finderAstar) {
+        delete _finderAstar;
+        _finderAstar=nullptr;
+    }
+    
+    _finderAstar=new AStarFinder(static_cast<int>(_tileMap->getMapSize().width));
+    
+    //Set goal, start and walls.
+    auto startCoord=position2TileCoord(_start->getPosition());
+    auto goalCoord=position2TileCoord(_goal->getPosition());
+    auto idGoal=_finderAstar->coord2Id(std::vector<int> {static_cast<int>(goalCoord.x), static_cast<int>(goalCoord.y)});
+    auto idStart=_finderAstar->coord2Id(std::vector<int> {static_cast<int>(startCoord.x), static_cast<int>(startCoord.y)});
+    
+    _idGoal=idGoal;
+    _idStart=idStart;
+    
+    _finderAstar->setGoal(idGoal);
+    _finderAstar->setStart(idStart);
+    
+    _finderAstar->init();
+    
+    for(int i=0;i<_tileMap->getMapSize().width;++i) {
+        for(int j=0;j<_tileMap->getMapSize().height;++j) {
+            if(vTileSprites[i][j]->isVisible()) {
+                auto currId=_finderAstar->coord2Id(std::vector<int> {i, j});
+                _finderAstar->setWallFlagEntry(currId, true);
+            }
+        }
+    }
+    
+    _finderAstar->genAdjList();
+
+    while(!_finderAstar->isFin()) {
+        //Sleep for 0.5 second
+        auto beg=chrono::system_clock::now();
+        bool flag=true;
+        while(flag) {
+            auto end=chrono::system_clock::now();
+            auto elapsed=end-beg;
+            if(elapsed.count()>=1) {
+                flag=false;
+            }
+        }
+        
+        _finderAstar->expandFrontier();
+        updateMyTiles();
+    }
+    
+    
+    //enable touch event listener;
+    listener->setEnabled(true);
+}
+
+void TileMapScene::updateMyTiles() {
+    auto currConfig = _finderAstar->getConfig();
+    for(auto it=currConfig.cbegin(); it!=currConfig.cend();++it) {
+        auto id=it->first;
+        if(id==_idGoal || id==_idStart) continue;
+        auto coord=_finderAstar->id2Coord(id);
+        if(it->second==0) {
+            vTilesConfig[coord[0]][coord[1]]->setTexture(_greenTileTexture);
+            vTilesConfig[coord[0]][coord[1]]->setVisible(true);
+        } else {
+            vTilesConfig[coord[0]][coord[1]]->setTexture(_blueTileTexture);
+            vTilesConfig[coord[0]][coord[1]]->setVisible(true);
+        }
+    }
 }
 
 Point TileMapScene::tileCoord2Center(Point coord) {

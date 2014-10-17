@@ -9,6 +9,7 @@
 #ifndef __pathFindDemo__TileMapScene__
 #define __pathFindDemo__TileMapScene__
 #include "cocos2d.h"
+#include "AStarFinder.h"
 
 #include <iostream>
 
@@ -22,6 +23,8 @@ public:
     virtual bool init();
     
     void menuCloseCallback(cocos2d::Ref* pSender);
+    
+    void menuGoCallback(Ref* pSender);
     
     virtual bool onTouchBegan(Touch* t, Event* e);
     virtual void onTouchMoved(Touch* t, Event* e);
@@ -66,11 +69,17 @@ private:
     
     void runScaleAction(Sprite* ps);
     
+    void updateMyTiles();
+    
     Sprite* getTileAt(Point p);
     
     //void touchMoved
     
 private:
+    EventListenerTouchOneByOne* listener;
+    
+    AStarFinder* _finderAstar;
+    
     TMXTiledMap* _tileMap;
     TMXLayer* _background;
     TMXLayer* _foreground;
@@ -80,20 +89,21 @@ private:
     Sprite* _goal;
     Sprite* _currDft;
     
+    int _idStart;
+    int _idGoal;
+    
     Texture2D* _defaultTileTexture;
     Texture2D* _startTileTexture;
     Texture2D* _goalTileTexture;
     Texture2D* _wallTileTexture;
+    Texture2D* _greenTileTexture;
+    Texture2D* _blueTileTexture;
     
-    //TMXLayer* _meta;
-    
-    //Vector<int> tilesColorTags;
-    //std::unordered_map<Sprite*, int> tilesType;
     std::vector<std::vector<Sprite*> > vTileSprites;
+    std::vector<std::vector<Sprite*> > vTilesConfig;
     
     //Touch
     bool isTouchMoved=false;
-    //bool isLongTouch=false;
     bool isStartLongPressed=false;
     bool isGoalLongPressed=false;
     bool isDftLongPressed=false;
@@ -103,9 +113,6 @@ private:
     bool isGoalTouched=false;
     bool isDftTouched=false;
     
-    //SpriteBatchNode* _blueNode;
-    //SpriteBatchNode* _blackNode;
-    //SpriteBatchNode* _dftNode;
     
     Point _blueCoord;
     Point _blackCoord;

@@ -68,6 +68,12 @@
 		D7A921F719ED074200F1C075 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F419ED074200F1C075 /* start.png */; };
 		D7A921F819ED074200F1C075 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921F519ED074200F1C075 /* tile.png */; };
 		D7A921FD19EE40E200F1C075 /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A921FC19EE40E200F1C075 /* wall.png */; };
+		D7A9220319EEE0AB00F1C075 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A9220119EEE0AB00F1C075 /* fire.png */; };
+		D7A9220419EEE0AB00F1C075 /* fireSel.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A9220219EEE0AB00F1C075 /* fireSel.png */; };
+		D7A9220A19EF60F000F1C075 /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A9220819EF60F000F1C075 /* PathFinder.cpp */; };
+		D7A9220D19EF9FCA00F1C075 /* AStarFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A9220B19EF9FCA00F1C075 /* AStarFinder.cpp */; };
+		D7A9221019F1081B00F1C075 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A9220E19F1081B00F1C075 /* blue.png */; };
+		D7A9221119F1081B00F1C075 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A9220F19F1081B00F1C075 /* green.png */; };
 		D7FE348C19EA2DFF006A296A /* PlayNow.png in Resources */ = {isa = PBXBuildFile; fileRef = D7FE348A19EA2DFF006A296A /* PlayNow.png */; };
 		D7FE348D19EA2DFF006A296A /* PlayNowSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D7FE348B19EA2DFF006A296A /* PlayNowSelected.png */; };
 		D7FE349019EA3B79006A296A /* TileMapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7FE348E19EA3B79006A296A /* TileMapScene.cpp */; };
@@ -164,6 +170,14 @@
 		D7A921F419ED074200F1C075 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		D7A921F519ED074200F1C075 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		D7A921FC19EE40E200F1C075 /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
+		D7A9220119EEE0AB00F1C075 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		D7A9220219EEE0AB00F1C075 /* fireSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireSel.png; sourceTree = "<group>"; };
+		D7A9220819EF60F000F1C075 /* PathFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathFinder.cpp; sourceTree = "<group>"; };
+		D7A9220919EF60F000F1C075 /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinder.h; sourceTree = "<group>"; };
+		D7A9220B19EF9FCA00F1C075 /* AStarFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AStarFinder.cpp; sourceTree = "<group>"; };
+		D7A9220C19EF9FCA00F1C075 /* AStarFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AStarFinder.h; sourceTree = "<group>"; };
+		D7A9220E19F1081B00F1C075 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		D7A9220F19F1081B00F1C075 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		D7FE348A19EA2DFF006A296A /* PlayNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayNow.png; sourceTree = "<group>"; };
 		D7FE348B19EA2DFF006A296A /* PlayNowSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayNowSelected.png; sourceTree = "<group>"; };
 		D7FE348E19EA3B79006A296A /* TileMapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileMapScene.cpp; sourceTree = "<group>"; };
@@ -282,6 +296,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D7A9220E19F1081B00F1C075 /* blue.png */,
+				D7A9220F19F1081B00F1C075 /* green.png */,
+				D7A9220119EEE0AB00F1C075 /* fire.png */,
+				D7A9220219EEE0AB00F1C075 /* fireSel.png */,
 				D7A921FC19EE40E200F1C075 /* wall.png */,
 				D7A921F319ED074200F1C075 /* goal.png */,
 				D7A921F419ED074200F1C075 /* start.png */,
@@ -316,6 +334,10 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				D7FE348E19EA3B79006A296A /* TileMapScene.cpp */,
 				D7FE348F19EA3B79006A296A /* TileMapScene.h */,
+				D7A9220819EF60F000F1C075 /* PathFinder.cpp */,
+				D7A9220919EF60F000F1C075 /* PathFinder.h */,
+				D7A9220B19EF9FCA00F1C075 /* AStarFinder.cpp */,
+				D7A9220C19EF9FCA00F1C075 /* AStarFinder.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -476,9 +498,13 @@
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				D7A9220319EEE0AB00F1C075 /* fire.png in Resources */,
+				D7A9221019F1081B00F1C075 /* blue.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
+				D7A9221119F1081B00F1C075 /* green.png in Resources */,
 				D72AD6B819EAB04B0044ED8F /* pathFind.tmx in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				D7A9220419EEE0AB00F1C075 /* fireSel.png in Resources */,
 				D7A921F719ED074200F1C075 /* start.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
@@ -519,9 +545,11 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				D7FE349019EA3B79006A296A /* TileMapScene.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				D7A9220D19EF9FCA00F1C075 /* AStarFinder.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				D7A9220A19EF60F000F1C075 /* PathFinder.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
